@@ -6,7 +6,7 @@
 
 ![concept-art](./res/logo-concept-art.jpeg)
 
-## What is it?!
+## What is this?!
 
 Education project to experience game development with Unity. We are going to create a diablo-like slasher aRPG game. Don't worry we do not expect to solve a million-dollar problem here. We aim to experience and try our software engineering skills in something different. Hopefully by the end of our business year we can try the MVP of our game!
 
@@ -14,7 +14,7 @@ Education project to experience game development with Unity. We are going to cre
 
 Pull this repository and checkout to the `development` branch. There you will find the skeleton of the project.
 
-You can open the project two way:
+You can open the project two ways:
 * via Unity Hub you can browse the containing folder
 or,
 * via CLI entering the following command.
@@ -30,7 +30,7 @@ We are going to document our progress in Jira. The board can be reached at the f
 
 [Jira board](https://rilgame.atlassian.net/jira/software/projects/AMN/boards/1)
 
-We are going to follow Gitflow method. Our production branch is `main`. At every epic we start working in we create a distinct branch and pull to `development` branch.
+We are going to follow Gitflow practice. Our production branch is `main`. At every epic we start working in a distinct branch and when finished pull to `development` branch.
 
 Let's try and practice frequent play-testing as we design and implement a new feature! :)
 
