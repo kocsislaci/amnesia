@@ -18,11 +18,8 @@ public class PlayerMovement : MonoBehaviour {
   private void OnDisable() {
     playerControls.Gameplay.Disable();
   }
-
   
-
   private void Move(InputAction.CallbackContext context) {
-    Debug.Log("hit");
     RaycastHit hit;
 
     if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100))
