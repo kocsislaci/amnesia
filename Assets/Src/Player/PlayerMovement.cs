@@ -1,30 +1,32 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(PlayerController))]
 public class PlayerMovement : MonoBehaviour {
   private NavMeshAgent agent;
-  private PlayerControls playerControls;
 
-  void Awake() {
+  private bool shouldSignal = false;
+  public UnityEvent OnArrived = new UnityEvent();
+
+  private void Awake() {
     agent = GetComponent<NavMeshAgent>();
-    playerControls = new PlayerControls();
-    playerControls.Gameplay.LeftClick.performed += Move;
-  }
-  private void OnEnable() {
-    playerControls.Gameplay.Enable();
-  }
-
-  private void OnDisable() {
-    playerControls.Gameplay.Disable();
   }
   
-  private void Move(InputAction.CallbackContext context) {
-    RaycastHit hit;
-
-    if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100))
-    {
-      agent.destination = hit.point;
+  // Sole purpose is to invoke an event ONCE to whoever listens
+  private void Update() {
+    if (shouldSignal && (transform.position - agent.destination).magnitude <= 0.5f) {
+      shouldSignal = false;
+      OnArrived.Invoke();
     }
+  }
+
+  public void MoveTo(Vector3 destination) {
+    agent.SetDestination(destination);
+    shouldSignal = true;
+  }
+  
+  public void SetSpeed(float newSpeed) {
+    agent.speed = newSpeed;
   }
 }
