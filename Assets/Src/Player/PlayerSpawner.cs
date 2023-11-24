@@ -9,6 +9,8 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        Instantiate(playerPrefab, transform.position, transform.rotation);
+        var player = Instantiate(playerPrefab, transform.position, transform.rotation);
+        var mainCamera = Camera.main.GetComponent<PlayerCameraLock>();
+        mainCamera.Lock(player);
     }
 }
