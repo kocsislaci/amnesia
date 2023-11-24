@@ -19,7 +19,7 @@ public class WallObstacle : MonoBehaviour
             _originalColor.r,
             _originalColor.g,
             _originalColor.b,
-            0.5f
+            0.2f
         );
     }
     public void SetOriginalColor() {

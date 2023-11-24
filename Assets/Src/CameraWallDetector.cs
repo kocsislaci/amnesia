@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -14,7 +15,7 @@ public class CameraWallDetector : MonoBehaviour
     private GameObject player;
     void Start()
     {
-        player = GameObject.Find("RedCube");
+        player = GameObject.FindWithTag("Player");
     }
     void Update()
     {
@@ -26,23 +27,21 @@ public class CameraWallDetector : MonoBehaviour
             throttle = 0;
         }
         float dist = Vector3.Distance(transform.position, player.transform.position);
+        LayerMask mask = (1 << LayerMask.NameToLayer("Obstacle"));
         RaycastHit[] hits = Physics.RaycastAll(transform.position,
-                                                      transform.forward, dist);
+            player.transform.position - this.transform.position, dist, mask);
         var usedInstanceIds = new HashSet<int>();
         foreach (RaycastHit h in hits)
         {
-            if (!h.rigidbody) {
-                continue;
-            }
-            var renderer = h.rigidbody.gameObject.GetComponent<MeshRenderer>();
+            var renderer = h.collider.gameObject.GetComponent<MeshRenderer>();
             if (!renderer) {
                 continue;
             }
-            var wallObstacle = h.rigidbody.gameObject.GetComponent<WallObstacle>();
+            var wallObstacle = h.collider.gameObject.GetComponent<WallObstacle>();
             if (!wallObstacle) {
                 continue;
             }
-            var instanceId = h.rigidbody.gameObject.GetInstanceID();
+            var instanceId = h.collider.gameObject.GetInstanceID();
             usedInstanceIds.Add(instanceId);
             if (wallsMadeTransparent.ContainsKey(instanceId) && wallsMadeTransparent[instanceId].isTransparent) {
                 continue;
