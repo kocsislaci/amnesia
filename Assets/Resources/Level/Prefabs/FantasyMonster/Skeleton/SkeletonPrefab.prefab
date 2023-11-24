@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 839288506}
   - component: {fileID: 839288509}
   - component: {fileID: 839288510}
+  - component: {fileID: 161566712}
   m_Layer: 0
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonMovement: {fileID: 839288510}
-  playerController: {fileID: 0}
+  target: {fileID: 0}
 --- !u!195 &839288509
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -100,6 +101,27 @@ MonoBehaviour:
   OnArrived:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &161566712
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471066025832211672}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: dfc15c633f0d98141920018f79a042a6, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0914aa38dcceb4956aaacf045d1c24ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8534699359479018739
 PrefabInstance:
   m_ObjectHideFlags: 0

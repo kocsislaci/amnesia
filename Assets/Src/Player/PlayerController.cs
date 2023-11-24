@@ -3,108 +3,135 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour {
-    // components
-    public PlayerMovement playerMovement;
-    
-    // controls
-    private PlayerControls playerControls;
+public class PlayerController : MonoBehaviour
+{
+  // components
+  Animator animator;
+  public PlayerMovement playerMovement;
 
-    // basic internal info
-    [CanBeNull]
-    public GameObject Target {
-        get => _target;
-        set {
-            _target = value;
-        }
-    }
-    [CanBeNull] private GameObject _target = null;
+  // controls
+  private PlayerControls playerControls;
 
-    private Vector3? TargetPos {
-        get => _targetPos;
-        set {
-            _targetPos = value;
-            if (value != null) {
-                playerMovement.MoveTo(value.Value);
-            }
-            Debug.Log($"targetSet {value}, {State}");
-        }
+  // basic internal info
+  [CanBeNull]
+  public GameObject Target
+  {
+    get => _target;
+    set
+    {
+      _target = value;
     }
-    private Vector3? _targetPos;
-    
-    public PlayerState State { get; private set; } = PlayerState.Idle;
+  }
+  [CanBeNull] private GameObject _target = null;
 
-    // RPG stats
-    public float Health {
-        get => _health;
-        private set => _health = value;
+  private Vector3? TargetPos
+  {
+    get => _targetPos;
+    set
+    {
+      _targetPos = value;
+      if (value != null)
+      {
+        playerMovement.MoveTo(value.Value);
+      }
+      Debug.Log($"targetSet {value}, {State}");
     }
-    private float _health;
-    
-    public float Speed {
-        get => _speed;
-        private set {
-            _speed = value;
-            playerMovement.SetSpeed(_speed);
-        }
-    }
-    private float _speed;
+  }
+  private Vector3? _targetPos;
 
-    // attack range
-    // attack speed
-    // attack power
-    
-    private void Awake() {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerControls = new();
-    }
+  public PlayerState State { get; private set; } = PlayerState.Idle;
 
-    private void OnEnable() {
-        playerControls.Gameplay.Enable();
-    }
+  // RPG stats
+  public float Health
+  {
+    get => _health;
+    private set => _health = value;
+  }
+  private float _health;
 
-    private void Start() {
-        playerControls.Gameplay.LeftClick.performed += OnLeftClick;
-        playerMovement.OnArrived.AddListener(HasArrived);
+  public float Speed
+  {
+    get => _speed;
+    private set
+    {
+      _speed = value;
+      playerMovement.SetSpeed(_speed);
+    }
+  }
+  private float _speed;
 
-        Speed = 10.0f;
-        Health = 100.0f;
-    }
+  // attack range
+  // attack speed
+  // attack power
 
-    private void OnDisable() {
-        playerControls.Gameplay.Disable();
-    }
-    
-    private void OnDestroy() {
-        playerControls.Gameplay.LeftClick.performed -= OnLeftClick;
-    }
+  private void Awake()
+  {
+    playerMovement = GetComponent<PlayerMovement>();
+    playerControls = new();
+  }
 
-    private void OnLeftClick(InputAction.CallbackContext callbackContext) {
-        RaycastHit hit;
-        LayerMask mask = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Item"));
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100, mask)) {
-            
-            // check what we hit ground or enemy
-            
-            switch (hit.collider.tag) {
-                case "Ground": {
-                    State = PlayerState.Moving;
-                    TargetPos = hit.point;
-                    break;
-                }
-                default: {
-                    Debug.Log("Nothing interesting hit.");
-                    break;
-                }
-            }
-            
-        }
-    }
+  private void OnEnable()
+  {
+    playerControls.Gameplay.Enable();
+  }
 
-    private void HasArrived() {
-        Debug.Log("arrived");
-        State = PlayerState.Idle;
+  private void Start()
+  {
+    animator = GetComponent<Animator>();
+    animator.SetBool("Run", false);
+    animator.SetBool("SuperRun", false);
+
+    playerControls.Gameplay.LeftClick.performed += OnLeftClick;
+    playerMovement.OnArrived.AddListener(HasArrived);
+
+    Speed = 10.0f;
+    Health = 100.0f;
+  }
+
+  private void OnDisable()
+  {
+    playerControls.Gameplay.Disable();
+  }
+
+  private void OnDestroy()
+  {
+    playerControls.Gameplay.LeftClick.performed -= OnLeftClick;
+  }
+
+  private void OnLeftClick(InputAction.CallbackContext callbackContext)
+  {
+    RaycastHit hit;
+    LayerMask mask = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Item"));
+    if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100, mask))
+    {
+
+      // check what we hit ground or enemy
+
+      switch (hit.collider.tag)
+      {
+        case "Ground":
+          {
+            animator.SetBool("Run", true);
+            State = PlayerState.Moving;
+            TargetPos = hit.point;
+            break;
+          }
+        default:
+          {
+            Debug.Log("Nothing interesting hit.");
+            break;
+          }
+      }
+
     }
+  }
+
+  private void HasArrived()
+  {
+    Debug.Log("arrived");
+    animator.SetBool("Run", false);
+    State = PlayerState.Idle;
+  }
 }
 
 
@@ -112,8 +139,10 @@ public class PlayerController : MonoBehaviour {
 
 
 
-public enum PlayerState {
-    Idle,
-    Moving,
-    Attacking,
+public enum PlayerState
+{
+  Idle,
+  Moving,
+  Attacking,
+  SuperRun
 }
