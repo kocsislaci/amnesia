@@ -672,7 +672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 235045591}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2304,6 +2304,10 @@ PrefabInstance:
       value: Fence_1
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2657,6 +2661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_3
       objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2765,9 +2773,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -2800,8 +2808,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 1152
-    _typelessdata: 00000000000000000000803f00000000000000000000803f000080bf0000000000000000000080bf00000a3f000000bc0000803f000000000000803f00000000000000000000803f000080bf0000000000000000000080bf00000000000000bc000000000000803f0000803f00000000000000000000803f000080bf0000000000000000000080bf00000a3f0058eb3e0000803f0000803f0000803f00000000000000000000803f000080bf0000000000000000000080bf000000000058eb3e0000803f000000000000803f0000803f000000000000000000000000000000000000803f000080bf0300043f000000000000803f00000000000000000000803f000000000000000000000000000000000000803f000080bf00000000000000000000803f0000803f0000803f0000803f000000000000000000000000000000000000803f000080bf0300043f0b00e43e0000803f0000803f000000000000803f000000000000000000000000000000000000803f000080bf000000000b00e43e0000803f00000000000000000000000000000000000080bf0000803f0000000000000000000080bf0000063f000000000000000000000000000000000000000000000000000080bf0000803f0000000000000000000080bf00000000000000000000803f0000803f000000000000000000000000000080bf0000803f0000000000000000000080bf0000063f0600ec3e000000000000803f000000000000000000000000000080bf0000803f0000000000000000000080bf000000000600ec3e000000000000000000000000000080bf00000000000000000000000000000000000080bf000080bf0000063f0000803200000000000000000000803f000080bf00000000000000000000000000000000000080bf000080bf00b2673c00008032000000000000803f00000000000080bf00000000000000000000000000000000000080bf000080bf0000063f0830e63e000000000000803f0000803f000080bf00000000000000000000000000000000000080bf000080bf00b2673c0830e63e000000000000803f0000803f000000000000803f000000000000803f0000000000000000000080bf00ffff3bd4f37b3f0000803f0000803f0000803f000000000000803f000000000000803f0000000000000000000080bf8214f33ed4f37b3f000000000000803f00000000000000000000803f000000000000803f0000000000000000000080bf00ffff3b00000d3f0000803f0000803f00000000000000000000803f000000000000803f0000000000000000000080bf8214f33e00000d3f00000000000000000000000000000000000080bf00000000000080bf0000000000000000000080bfffff0e3f000080330000803f000000000000000000000000000080bf00000000000080bf0000000000000000000080bf8000803b0000803300000000000000000000803f00000000000080bf00000000000080bf0000000000000000000080bfffff0e3fffff0d3f0000803f000000000000803f00000000000080bf00000000000080bf0000000000000000000080bf8000803bffff0d3f
+    m_DataSize: 1344
+    _typelessdata: 00000000000000000000803f00000000000000000000803f000080bf0000000000000000000080bf00000a3f000000bcd601a73e9b202c3f0000803f000000000000803f00000000000000000000803f000080bf0000000000000000000080bf00000000000000bcd601a73ed6827a3f000000000000803f0000803f00000000000000000000803f000080bf0000000000000000000080bf00000a3f0058eb3e0bd7a33c9b202c3f0000803f0000803f0000803f00000000000000000000803f000080bf0000000000000000000080bf000000000058eb3e0ed7a33cd6827a3f0000803f000000000000803f0000803f000000000000000000000000000000000000803f000080bf0300043f000000000ed7a33c0bd7a33c0000803f00000000000000000000803f000000000000000000000000000000000000803f000080bf0000000000000000e701a73e0bd7a33c0000803f0000803f0000803f0000803f000000000000000000000000000000000000803f000080bf0300043f0b00e43e0bd7a33cd601a73e0000803f0000803f000000000000803f000000000000000000000000000000000000803f000080bf000000000b00e43ee601a73ed601a73e0000803f00000000000000000000000000000000000080bf0000803f0000000000000000000080bf0000063f000000004f3fb13ede01273f0000000000000000000000000000000000000000000080bf0000803f0000000000000000000080bf00000000000000004f3fb13e463fb13e0000803f0000803f000000000000000000000000000080bf0000803f0000000000000000000080bf0000063f0600ec3eda01273fde01273f000000000000803f000000000000000000000000000080bf0000803f0000000000000000000080bf000000000600ec3eda01273f463fb13e000000000000000000000000000080bf00000000000000000000000000000000000080bf000080bf0000063f00008032583fb13e0bd7a33c00000000000000000000803f000080bf00000000000000000000000000000000000080bf000080bf00b2673c00008032e701273f0bd7a33c000000000000803f00000000000080bf00000000000000000000000000000000000080bf000080bf0000063f0830e63e573fb13ed601a73e000000000000803f0000803f000080bf00000000000000000000000000000000000080bf000080bf00b2673c0830e63ee601273fd601a73e000000000000803f0000803f000000000000803f000000000000803f0000000000000000000080bf00ffff3bd4f37b3fde01a73e4f3fb13e0000803f0000803f0000803f000000000000803f000000000000803f0000000000000000000080bf8214f33ed4f37b3fd601a73ee201273f000000000000803f00000000000000000000803f000000000000803f0000000000000000000080bf00ffff3b00000d3f8ed7a33c463fb13e0000803f0000803f00000000000000000000803f000000000000803f0000000000000000000080bf8214f33e00000d3f0bd7a33cde01273f00000000000000000000000000000000000080bf00000000000080bf0000000000000000000080bfffff0e3f00008033d2827a3f0bd7a33c0000803f000000000000000000000000000080bf00000000000080bf0000000000000000000080bf8000803b00008033d6827a3fe601a73e00000000000000000000803f00000000000080bf00000000000080bf0000000000000000000080bfffff0e3fffff0d3f9f202c3f8ed7a33c0000803f000000000000803f00000000000080bf00000000000080bf0000000000000000000080bf8000803bffff0d3fa3202c3fef01a73e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -2861,7 +2869,7 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshMetrics[0]: 4.6420565
-  m_MeshMetrics[1]: 1
+  m_MeshMetrics[1]: 10.666674
   m_MeshOptimizationFlags: 1
   m_StreamData:
     serializedVersion: 2
@@ -2922,6 +2930,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_Name
       value: Fence_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3532,6 +3544,10 @@ PrefabInstance:
       value: Fence
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3762,6 +3778,10 @@ PrefabInstance:
       value: Fence_2
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3949,7 +3969,7 @@ GameObject:
   - component: {fileID: 1026650097}
   - component: {fileID: 1026650096}
   - component: {fileID: 1026650099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4244,6 +4264,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Name
       value: House_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
@@ -4959,6 +4983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_5
       objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -5018,6 +5046,7 @@ GameObject:
   - component: {fileID: 1185480629}
   - component: {fileID: 1185480628}
   - component: {fileID: 1185480631}
+  - component: {fileID: 1185480632}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -5101,6 +5130,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 341cfcb306a734679b41e414874113c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1185480632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185480627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df613efd21950439ab2c7ed756d01382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!43 &1215651560
@@ -6114,6 +6155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6534,6 +6579,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Name
       value: House_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
@@ -7281,6 +7330,10 @@ PrefabInstance:
       value: Fence_8
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7630,6 +7683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House_4
       objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7928,6 +7985,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_Name
       value: Fence_7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8379,6 +8440,10 @@ PrefabInstance:
       value: Fence_5
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -8449,6 +8514,10 @@ PrefabInstance:
       value: Fence_3
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -8513,6 +8582,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_Name
       value: Fence_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4853018412357260788, guid: bd092694728db426f92af91ef6ce1334, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -8699,6 +8772,10 @@ PrefabInstance:
     - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Name
       value: House
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853018412357260788, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5153339476139114717, guid: 15664b6bceb5844ad9cb69751909407d, type: 3}
       propertyPath: m_Mesh

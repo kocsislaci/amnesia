@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5941428464712859090}
   - component: {fileID: 1104218748004704635}
   - component: {fileID: 3828247214852389205}
+  - component: {fileID: 6492969035839591212}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -333,3 +334,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4853018412357260788}
   m_Mesh: {fileID: 0}
+--- !u!114 &6492969035839591212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4853018412357260788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac855ea1a9378468a9510365c989954d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTransparent: 0

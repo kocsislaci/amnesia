@@ -81,9 +81,11 @@ public class PlayerController : MonoBehaviour {
 
     private void OnLeftClick(InputAction.CallbackContext callbackContext) {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100)) {
+        LayerMask mask = (1 << LayerMask.NameToLayer("Ground")) | (1 << LayerMask.NameToLayer("Enemy")) | (1 << LayerMask.NameToLayer("Item"));
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(playerControls.Gameplay.MousePosition.ReadValue<Vector2>()), out hit, 100, mask)) {
             
             // check what we hit ground or enemy
+            
             switch (hit.collider.tag) {
                 case "Ground": {
                     State = PlayerState.Moving;
