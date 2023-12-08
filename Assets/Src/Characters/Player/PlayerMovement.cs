@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class PlayerMovement : MonoBehaviour {
   private NavMeshAgent agent;
 

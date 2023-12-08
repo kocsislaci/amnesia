@@ -9,6 +9,9 @@ public enum PlayerState
   Moving,
 }
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
   private static readonly int Run = Animator.StringToHash("Run");
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         State = PlayerState.Moving;
         playerMovement.MoveTo(value.Value);
       }
-      print($"TargetSet: {value}, and is {_state}");
+      print($"TargetSet: {value}");
     }
   }
   private Vector3? _targetPos = null;
@@ -47,7 +50,7 @@ public class PlayerController : MonoBehaviour
       SetAnimationSettings(_state);
     } 
   }
-  private PlayerState _state = PlayerState.Idle;
+  private PlayerState _state;
   
   // RPG stats
   public float Health {
@@ -62,18 +65,18 @@ public class PlayerController : MonoBehaviour
   // attack speed
   // attack power
 
-  private void Awake() {
+  void Awake() {
     playerMovement = GetComponent<PlayerMovement>();
-    animator = GetComponentInChildren<Animator>();
+    animator = GetComponent<Animator>();
 
     playerControls = new();
   }
 
-  private void OnEnable() {
+  void OnEnable() {
     playerControls.Gameplay.Enable();
   }
-
-  private void Start() {
+  
+  void Start() {
     playerControls.Gameplay.LeftClick.performed += OnLeftClick;
     playerMovement.onArrived.AddListener(HasArrived);
 
@@ -81,11 +84,11 @@ public class PlayerController : MonoBehaviour
     State = PlayerState.Idle;
   }
 
-  private void OnDisable() {
+  void OnDisable() {
     playerControls.Gameplay.Disable();
   }
 
-  private void OnDestroy() {
+  void OnDestroy() {
     playerControls.Gameplay.LeftClick.performed -= OnLeftClick;
   }
 
