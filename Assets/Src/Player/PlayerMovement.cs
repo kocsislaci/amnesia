@@ -6,8 +6,9 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour {
   private NavMeshAgent agent;
 
-  private bool shouldSignal = false;
-  public UnityEvent OnArrived = new UnityEvent();
+  private bool isMoving = false;
+  [HideInInspector]
+  public UnityEvent onArrived = new UnityEvent();
 
   private void Awake() {
     agent = GetComponent<NavMeshAgent>();
@@ -15,18 +16,14 @@ public class PlayerMovement : MonoBehaviour {
   
   // Sole purpose is to invoke an event ONCE to whoever listens
   private void Update() {
-    if (shouldSignal && (transform.position - agent.destination).magnitude <= 0.5f) {
-      shouldSignal = false;
-      OnArrived.Invoke();
+    if (isMoving && (transform.position - agent.destination).magnitude <= 0.1f) {
+      isMoving = false;
+      onArrived.Invoke();
     }
   }
 
   public void MoveTo(Vector3 destination) {
     agent.SetDestination(destination);
-    shouldSignal = true;
-  }
-  
-  public void SetSpeed(float newSpeed) {
-    agent.speed = newSpeed;
+    isMoving = true;
   }
 }

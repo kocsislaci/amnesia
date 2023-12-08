@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SkeletonController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class SkeletonController : MonoBehaviour
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
     }
-
+    
     // Update is called once per frame
     void Update()
     {
