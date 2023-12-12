@@ -33,7 +33,7 @@ public class SkeletonController : MonoBehaviour
     private SkeletonState _state;
 
     [CanBeNull]
-    private PlayerController Target {
+    public PlayerController Target {
         get => _target;
         set {
             _target = value;
@@ -52,12 +52,12 @@ public class SkeletonController : MonoBehaviour
 
         fovEventBehaviour.SearchedTag = "Player";
         closeRangeEventBehaviour.SearchedTag = "Player";
+        
+        State = SkeletonState.Idle;
+        Target = null;
     }
     
     void Start() { // Init the game specific stuff
-        State = SkeletonState.Idle;
-        Target = null;
-        
         fovEventBehaviour.OnMyTriggerEnter.AddListener(OnFOVEnter);
         closeRangeEventBehaviour.OnMyTriggerEnter.AddListener(OnCloseRangeEnter);
         closeRangeEventBehaviour.OnMyTriggerExit.AddListener(OnCloseRangeExit);

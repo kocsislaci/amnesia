@@ -55,8 +55,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemyInWave()
     {
         var enemy = Instantiate(waves[currentWave].enemy, transform.position, transform.rotation);
-        enemy.GetComponent<NavMeshAgent>().SetDestination(new Vector3(-27, 0, -6)); // TODO dynamic destination
-
+        enemy.GetComponent<SkeletonController>().Target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>(); // TODO dynamic destination
+        
         if (--currentWaveEnemyCount == 0) CancelInvoke("SpawnEnemyInWave");
     }
 }
