@@ -6,7 +6,7 @@ using UnityEngine;
 /// Class to identify walls between the camera and the player
 /// Expects to be mesh rendered
 /// </summary>
-public class WallObstacle : MonoBehaviour
+public class WallTransparencyController : MonoBehaviour
 {
     public bool isTransparent = false;
     private Color _originalColor;

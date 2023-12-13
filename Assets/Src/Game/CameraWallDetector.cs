@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 public class CameraWallDetector : MonoBehaviour
 {
-    private Dictionary<int, WallObstacle> wallsMadeTransparent = new Dictionary<int, WallObstacle>();
+    private Dictionary<int, WallTransparencyController> wallsMadeTransparent = new Dictionary<int, WallTransparencyController>();
     private int throttle = 0;
     private GameObject player;
     void Start()
@@ -37,7 +37,7 @@ public class CameraWallDetector : MonoBehaviour
             if (!renderer) {
                 continue;
             }
-            var wallObstacle = h.collider.gameObject.GetComponent<WallObstacle>();
+            var wallObstacle = h.collider.gameObject.GetComponent<WallTransparencyController>();
             if (!wallObstacle) {
                 continue;
             }
