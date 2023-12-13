@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a69511a1d0218694094b96929693635e
+guid: 2a12425d4e7304f498851b1ea4807db9
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -17,19 +17,24 @@ ModelImporter:
     second: //RootNode
   - first:
       43: 4300000
-    second: ch1
+    second: Mesh
   - first:
       74: 7400000
     second: Take 001
   - first:
       95: 9500000
     second: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ch8_v3
+    second: {fileID: 2100000, guid: dc142ff7d44e647beb511d62ae7b76ce, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -116,9 +121,9 @@ ModelImporter:
     skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
