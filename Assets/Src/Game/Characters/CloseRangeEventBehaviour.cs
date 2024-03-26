@@ -1,0 +1,2 @@
+
+public class CloseRangeEventBehaviour : CollisionEventBehaviour { }
