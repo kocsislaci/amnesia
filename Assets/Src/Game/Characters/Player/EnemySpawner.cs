@@ -55,7 +55,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemyInWave()
     {
         var enemy = Instantiate(waves[currentWave].enemy, transform.position, transform.rotation);
-        enemy.GetComponent<SkeletonController>().Target = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>(); // TODO dynamic destination
+        
+        // TODO: Start skeleton FSM
         
         if (--currentWaveEnemyCount == 0) CancelInvoke("SpawnEnemyInWave");
     }
