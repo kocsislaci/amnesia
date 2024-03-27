@@ -478,6 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9569860bce77244a382e7baf928f4a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 0}
 --- !u!114 &1990566809696181441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,9 +492,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53744df4b8f6745ed89af13ed182e136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeEnough:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9192428565592846605
 GameObject:
   m_ObjectHideFlags: 0

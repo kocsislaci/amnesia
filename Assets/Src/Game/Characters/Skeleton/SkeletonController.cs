@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,6 +9,8 @@ public enum SkeletonState
 {
     Idle,
     Chase,
+    Investigate,
+    Patrol,
     // CloseEnough,
 }
 
@@ -14,92 +18,116 @@ public enum SkeletonState
 [RequireComponent(typeof(Animator))]
 public class SkeletonController : MonoBehaviour
 {
-    
+
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Attack = Animator.StringToHash("Attack");
-    
+
     private Animator animator;
     private SkeletonMovement skeletonMovement;
     private FOVEventBehaviour fovEventBehaviour;
     private CloseRangeEventBehaviour closeRangeEventBehaviour;
-    
-    private SkeletonState State {
+
+    private SkeletonState State
+    {
         get => _state;
-        set {
+        set
+        {
             _state = value;
             SetAnimationSettings(_state);
-        } 
+        }
     }
     private SkeletonState _state;
 
-    [CanBeNull] public PlayerController Target {
-        get => _target;
-        set {
-            _target = value;
-            if (value != null) {
-                State = SkeletonState.Chase;
-            }
-        }
-    }
-    [CanBeNull] private PlayerController _target;
-    
-    [CanBeNull] public Vector3? LastSeenAt {
-        get => _lastSeenAt;
-        set {
-            _lastSeenAt = value;
-        }
-    }
-    [CanBeNull] private Vector3? _lastSeenAt;
-    
-    void Awake() { // Init the configuration specific stuff
+    private GameObject Target;
+
+    [CanBeNull] private Vector3 LastSeenAt;
+
+    private List<GameObject> waypoints;
+
+    void Awake()
+    { // Init the configuration specific stuff
         skeletonMovement = GetComponent<SkeletonMovement>();
         animator = GetComponent<Animator>();
         fovEventBehaviour = GetComponentInChildren<FOVEventBehaviour>();
         // closeRangeEventBehaviour = GetComponentInChildren<CloseRangeEventBehaviour>();
 
+        waypoints = GameObject.FindGameObjectsWithTag("Waypoint").ToList();
         fovEventBehaviour.SearchedTag = "Player";
         // closeRangeEventBehaviour.SearchedTag = "Player";
-        
-        State = SkeletonState.Idle;
-        Target = null;
+
+        patrol();
     }
-    
-    void Start() { // Init the game specific stuff
+
+    void Start()
+    { // Init the game specific stuff
         fovEventBehaviour.OnMyTriggerEnter.AddListener(OnFOVEnter);
+        fovEventBehaviour.OnMyTriggerExit.AddListener(OnFOVExit);
         // closeRangeEventBehaviour.OnMyTriggerEnter.AddListener(OnCloseRangeEnter);
         // closeRangeEventBehaviour.OnMyTriggerExit.AddListener(OnCloseRangeExit);
     }
-    
+
     void Update()
     {
         // Our AI comes here :)
         // We repeat certain tasks in certain states
+        if (!Target && LastSeenAt.magnitude == 0)
+        {
+            patrol();
+        }
 
-        switch (State) {
-            case SkeletonState.Idle: 
-                // nothing :/
-                break;
-            case SkeletonState.Chase: 
-                // we have target, follow it damn
+        Debug.Log("currently" + State);
+
+        switch (State)
+        {
+
+            case SkeletonState.Patrol:
+            case SkeletonState.Chase:
+                float targetDistance = (this.transform.position - Target.transform.position).magnitude;
+                bool isPatroling = State == SkeletonState.Patrol;
+
+                if (targetDistance < 1 && isPatroling)
+                {
+                    int index = waypoints.FindIndex(w => w == Target);
+                    if (index == waypoints.Count - 1)
+                    {
+                        Target = waypoints.First();
+                    }
+                    else
+                    {
+                        Target = waypoints[index + 1];
+                    }
+                }
+
                 skeletonMovement.MoveTo(Target.transform.position);
                 break;
-            // case SkeletonState.CloseEnough: 
-            //     // we close enough, ATTACK
-            //     break;
-            default:
-                throw new ArgumentOutOfRangeException();
+
+
+            case SkeletonState.Investigate:
+                skeletonMovement.MoveTo(LastSeenAt);
+
+                float lastSeenDistance = (this.transform.position - LastSeenAt).magnitude;
+                if (lastSeenDistance < 1)
+                {
+                    LastSeenAt = new Vector3(0, 0, 0);
+                    State = SkeletonState.Patrol;
+                }
+                break;
         }
     }
 
-    private void OnFOVEnter(Collider other) {
+    private void OnFOVEnter(Collider other)
+    {
         Debug.Log("Player on sight! Let's follow it!");
-            
-        Target = other.gameObject.GetComponent<PlayerController>();
+
+        State = SkeletonState.Chase;
+        Target = other.gameObject;
     }
 
-    private void OnFOVExit(Collider other) {
+    private void OnFOVExit(Collider other)
+    {
         Debug.Log("Lost player!");
-
+        State = SkeletonState.Investigate;
+        LastSeenAt = other.gameObject.transform.position;
         Target = null;
     }
 
@@ -110,23 +138,33 @@ public class SkeletonController : MonoBehaviour
     // private void OnCloseRangeExit(Collider other) {
     //     State = SkeletonState.Chase;
     // }
-    
-    private void SetAnimationSettings(SkeletonState state) {
-        switch (state) {
+
+    private void SetAnimationSettings(SkeletonState state)
+    {
+        switch (state)
+        {
             case SkeletonState.Idle:
                 animator.SetBool(Run, false);
                 animator.SetBool(Attack, false);
                 break;
+            case SkeletonState.Investigate:
             case SkeletonState.Chase:
+            case SkeletonState.Patrol:
                 animator.SetBool(Run, true);
                 animator.SetBool(Attack, false);
                 break;
-            // case SkeletonState.CloseEnough:
-            //     animator.SetBool(Run, false);
-            //     animator.SetBool(Attack, true);
-            //     break;
-            // default:
+                // case SkeletonState.CloseEnough:
+                //     animator.SetBool(Run, false);
+                //     animator.SetBool(Attack, true);
+                //     break;
+                // default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
+    }
+
+    private void patrol()
+    {
+        Target = waypoints.First();
+        State = SkeletonState.Patrol;
     }
 }
